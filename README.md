@@ -1,5 +1,5 @@
 # RxJavaDemo
-RxJava Android app demo that demonstrates an observable.
+RxJava Android app demo that demonstrates an observable in action.
 
 First commit loosely based around tutorial.
 
