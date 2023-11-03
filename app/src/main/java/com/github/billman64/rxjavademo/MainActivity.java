@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -42,9 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
         taskObservable.subscribe(new Observer<Task>() {
             TextView status = findViewById(R.id.status);
+            ProgressBar progressBar = findViewById(R.id.progress_bar);
+
             @Override
             public void onSubscribe(@NonNull Disposable d) {
                 Log.d(TAG, "onSubscribe() called");
+                status.setText(getString(R.string.subscribed));
             }
 
             @Override
@@ -52,17 +57,21 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onNext() " + Thread.currentThread().getName());
                 Log.d(TAG, "onNext() " + task.getDescription());
                 status.setText(task.getDescription());
+                progressBar.setProgress(1);
             }
 
             @Override
             public void onError(@NonNull Throwable e) {
                 Log.e(TAG, "onError(): " + e);
+                status.setText(getString(R.string.error));
+                progressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override
             public void onComplete() {
                 Log.d(TAG, "onComplete() called");
-                status.setText("All tasks complete!");
+                status.setText(getString(R.string.tasks_complete));
+                progressBar.setVisibility(View.INVISIBLE);
                 TextView tv = findViewById(R.id.text);
                 String text = tv.getText().toString();
                 tv.setText(text + " \n\n:)");

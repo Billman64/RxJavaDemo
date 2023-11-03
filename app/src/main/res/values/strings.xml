@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">RxJavaDemo</string>
+    <string name="status">status: </string>
+    <string name="text_content">Note how you can adjust the seekBar immediately while the observable is processing tasks.</string>
+    <string name="subscribed">Task observable subscribed</string>
+    <string name="error">Error!</string>
+    <string name="tasks_complete">All tasks complete!</string>
 </resources>
