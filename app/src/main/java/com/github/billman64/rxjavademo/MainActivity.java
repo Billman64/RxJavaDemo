@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread());
 
         taskObservable.subscribe(new Observer<Task>() {
+            TextView status = findViewById(R.id.status);
             @Override
             public void onSubscribe(@NonNull Disposable d) {
                 Log.d(TAG, "onSubscribe() called");
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             public void onNext(@NonNull Task task) {
                 Log.d(TAG, "onNext() " + Thread.currentThread().getName());
                 Log.d(TAG, "onNext() " + task.getDescription());
+                status.setText(task.getDescription());
             }
 
             @Override
@@ -59,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete() {
                 Log.d(TAG, "onComplete() called");
+                status.setText("All tasks complete!");
+                TextView tv = findViewById(R.id.text);
+                String text = tv.getText().toString();
+                tv.setText(text + " \n\n:)");
             }
         });
 
