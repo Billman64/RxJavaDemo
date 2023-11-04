@@ -50,6 +50,15 @@
         android:indeterminate="true"
         android:visibility="visible" />
 
+    <ImageView
+        android:id="@+id/task_complete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@+id/progress_bar"
+        app:layout_constraintTop_toTopOf="@id/progress_bar"
+        android:src="@drawable/baseline_check_24"
+        android:visibility="invisible" />
+
     <SeekBar
         android:id="@+id/seekbar"
         android:layout_width="match_parent"

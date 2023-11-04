@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -72,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onComplete() called");
                 status.setText(getString(R.string.tasks_complete));
                 progressBar.setVisibility(View.INVISIBLE);
+                ImageView taskDoneImage = findViewById(R.id.task_complete);
+                taskDoneImage.setVisibility(View.VISIBLE);
+
                 TextView tv = findViewById(R.id.text);
                 String text = tv.getText().toString();
                 tv.setText(text + " \n\n:)");
